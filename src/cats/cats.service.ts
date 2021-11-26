@@ -12,4 +12,8 @@ export class CatsService {
     findAll(): Cat[] {
         return this.cats;
     }
+
+    findName(name: string): Cat {
+        return this.cats.filter(e => e.name==name ) [0];
+    }
 }
