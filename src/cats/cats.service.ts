@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Cat } from './interfaces/cat.interface';
+import {CatModule} from "./models/cat.model";
 
 @Injectable()
 export class CatsService {
@@ -13,7 +14,12 @@ export class CatsService {
         return this.cats;
     }
 
-    findName(name: string): Cat {
-        return this.cats.filter(e => e.name==name ) [0];
+    findName(name: string): CatModule {
+        let cat = this.cats.filter(e => e.name==name ) [0];
+        let catm = new CatModule();
+        catm.id = "12";
+        catm.name = cat.name;
+        catm.age = cat.age;
+        return catm;
     }
 }
