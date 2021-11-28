@@ -13,10 +13,10 @@ export class CatsController {
         this.catsService.create(createCatDto);
     }
 
-    @Get()
-    async findAll(): Promise<Cat[]> {
-        return this.catsService.findAll();
-    }
+    // @Get()
+    // async findAll(): Promise<Cat[]> {
+    //     return this.catsService.findAll();
+    // }
 
     @Get(':id')
     findOne(@Param('id') id: string) {

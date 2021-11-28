@@ -14,10 +14,10 @@ export class CatsService {
     // private readonly catsRepository = getRepository(CatEntity);
 
 
-    private readonly cats: Cat[] = [];
+    // private readonly cats: Cat[] = [];
 
     create(cat: Cat) {
-        this.cats.push(cat);
+       // this.cats.push(cat);
         let catEntity = new CatEntity();
         catEntity.id=12;
         catEntity.name = cat.name;
@@ -26,16 +26,20 @@ export class CatsService {
         this.catsRepository.save(catEntity);
     }
 
-    findAll(): Cat[] {
-        return this.cats;
-    }
+    // findAll(): Cat[] {
+    //     return this.cats;
+    // }
 
-    findName(name: string): CatModule {
-        let cat = this.cats.filter(e => e.name==name ) [0];
+    async findName(name: string): Promise<CatModule> {
+        // let cat = this.cats.filter(e => e.name==name ) [0];
+        let cat =await this.catsRepository.createQueryBuilder()
+            .where(" name = :name ", {name: name})
+            .getOne();
         let catm = new CatModule();
         catm.id = "12";
         catm.name = cat.name;
         catm.age = cat.age;
         return catm;
+
     }
 }
